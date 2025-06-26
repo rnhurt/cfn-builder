@@ -9,6 +9,7 @@
     "DefaultAction": { {{{inject this.DefaultAction}}} },
     {{#if this.Description}}"Description": "{{this.Description}}",{{/if}}
     "Name": "{{this.Name}}",
+    {{#if this.CustomResponseBodies}}"CustomResponseBodies": { {{{inject this.CustomResponseBodies}}} },{{/if}}
     {{#if this.Rules}}"Rules": [
       {{#each this.Rules}}{ {{{inject this}}} }{{#unless @last}},{{/unless}}{{/each}}
     ],{{/if}}

@@ -38,6 +38,7 @@
       {{/startsWith}},
     {{/if}}
     {{#if this.Layers}}"Layers": [ {{{inject this.Layers}}} ],{{/if}}
+    {{#if this.LoggingConfig}}"LoggingConfig": { {{{inject this.LoggingConfig}}} },{{/if}}
     {{#if this.MemorySize}}"MemorySize":{{this.MemorySize}},{{/if}}
     {{#if this.PackageType}}"PackageType": "{{this.PackageType}}",{{/if}}
     {{#if this.ReservedConcurrentExecutions}}"ReservedConcurrentExecutions": {{this.ReservedConcurrentExecutions}},{{/if}}
