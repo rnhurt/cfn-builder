@@ -1,0 +1,16 @@
+{{!--
+  Creates a new set of branding settings for a user pool style and associates it with an app client.
+
+  https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-cognito-managedloginbranding.html
+ --}}
+"cogmlb{{sanitize this.Name ''}}": {
+  "Type": "AWS::Cognito::ManagedLoginBranding",
+  "Properties": {
+    {{#if this.Assets}}"Assets": [ {{#each this.Assets}}{ {{{inject this}}} }{{comma}}{{/each}} ],{{/if}}
+    {{#if this.ClientId}}"ClientId": "{{this.ClientId}}",{{/if}}
+    {{#if this.ReturnMergedResources}}"ReturnMergedResources":  {{default (toString this.ReturnMergedResources) false}},{{/if}}
+    {{#if this.Settings}}"Settings": { {{{inject this.Settings}}} },{{/if}}
+    {{#if this.UseCognitoProvidedValues}}"UseCognitoProvidedValues":  {{default (toString this.UseCognitoProvidedValues) false}},{{/if}}
+    "UserPoolId": {"Ref":"cogup{{sanitize this.UserPoolId ''}}"}
+  }
+}

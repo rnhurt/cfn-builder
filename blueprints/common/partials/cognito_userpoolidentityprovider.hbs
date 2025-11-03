@@ -1,0 +1,16 @@
+{{!--
+  Creates an Amazon Cognito user pool identity provider (SAML, OIDC, etc.).
+
+  https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-cognito-userpoolidentityprovider.html
+ --}}
+"cogupip{{sanitize this.Name ''}}": {
+  "Type": "AWS::Cognito::UserPoolIdentityProvider",
+  "Properties": {
+    {{#if this.AttributeMapping}}"AttributeMapping": { {{{inject this.AttributeMapping}}} },{{/if}}
+    {{#if this.IdpIdentifiers}}"IdpIdentifiers": [ {{#each this.IdpIdentifiers}}"{{this}}"{{comma}}{{/each}} ],{{/if}}
+    "ProviderDetails": { {{{inject this.ProviderDetails}}} },
+    "ProviderName": "{{this.Name}}",
+    "ProviderType": "{{this.ProviderType}}",
+    "UserPoolId": {"Ref":"cogup{{sanitize this.UserPoolId ''}}"}
+  }
+}

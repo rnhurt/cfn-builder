@@ -1,0 +1,24 @@
+{{!--
+  Creates an Amazon Cognito identity pool.
+
+  https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-cognito-identitypool.html
+ --}}
+"cogip{{sanitize this.Name ''}}": {
+  "Type": "AWS::Cognito::IdentityPool",
+  "Properties": {
+    {{#if this.CognitoEvents}}"CognitoEvents": { {{{this.CognitoEvents}}} },{{/if}}
+    {{#if this.CognitoIdentityProviders}}"CognitoIdentityProviders": [
+      {{#each this.CognitoIdentityProviders}} { {{{inject this}}} }{{comma}}{{/each}}
+    ],{{/if}}
+    {{#if this.CognitoStreams}}"CognitoStreams": { {{{this.CognitoStreams}}} },{{/if}}
+    {{#if this.DeveloperProviderName}}"DeveloperProviderName": "{{this.DeveloperProviderName}}",{{/if}}
+    {{#if this.IdentityPoolTags}}"IdentityPoolTags": [ Tag, ... ],{{/if}}
+    {{#if this.OpenIdConnectProviderARNs}}"OpenIdConnectProviderARNs": [ "{{this.OpenIdConnectProviderARNs}}", ... ],{{/if}}
+    {{#if this.PushSync}}"PushSync": { {{{this.PushSync}}} },{{/if}}
+    {{#if this.SamlProviderARNs}}"SamlProviderARNs": [ "{{this.SamlProviderARNs}}", ... ],{{/if}}
+    {{#if this.SupportedLoginProviders}}"SupportedLoginProviders": { {{{this.SupportedLoginProviders}}} }{{/if}}
+    "AllowClassicFlow": {{default (toString this.AllowClassicFlow) false}},
+    "AllowUnauthenticatedIdentities": {{default (toString this.AllowUnauthenticatedIdentities) false}},
+    "IdentityPoolName": "{{this.Name}}"
+  }
+}

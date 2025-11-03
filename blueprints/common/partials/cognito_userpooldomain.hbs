@@ -7,6 +7,7 @@
   "Type": "AWS::Cognito::UserPoolDomain",
   "Properties": {
     {{#if this.CustomDomainConfig}}"CustomDomainConfig": { {{{inject this.CustomDomainConfig}}} },{{/if}}
+    {{#if this.ManagedLoginVersion}}"ManagedLoginVersion": {{this.ManagedLoginVersion}},{{/if}}
     "Domain": "{{this.Domain}}",
     "UserPoolId": { "Ref": "cogup{{sanitize this.UserPoolId ''}}" }
   }

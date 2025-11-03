@@ -70,6 +70,10 @@
     {{> apigateway_deployment}},
     {{/each}}
 
+    {{#each APIGatewayV2APIMappings}}
+    {{> apigatewayv2_apimapping}},
+    {{/each}}
+
     {{#each APIGatewayV2HttpAPIs}}
     {{> apigatewayv2_api}},
     {{/each}}
@@ -266,6 +270,14 @@
     {{> config_rule}},
     {{/each}}
 
+    {{#each CognitoIdentityPools}}
+    {{> cognito_identitypool}},
+    {{/each}}
+
+    {{#each CognitoManagedLoginBrandings}}
+    {{> cognito_managedloginbranding}},
+    {{/each}}
+
     {{#each CognitoUserPools}}
     {{> cognito_userpool}},
     {{/each}}
@@ -276,6 +288,10 @@
 
     {{#each CognitoUserPoolDomains}}
     {{> cognito_userpooldomain}},
+    {{/each}}
+
+    {{#each CognitoUserPoolIdentityProviders}}
+    {{> cognito_userpoolidentityprovider}},
     {{/each}}
 
     {{#each CognitoUserPoolRiskConfigurationAttachments}}
