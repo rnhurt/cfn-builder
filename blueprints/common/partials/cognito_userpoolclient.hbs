@@ -5,6 +5,9 @@
  --}}
 "cogupc{{sanitize this.Name ''}}": {
   "Type": "AWS::Cognito::UserPoolClient",
+  {{#if this.DependsOn}}
+    "DependsOn": [{{#each this.DependsOn}}"{{this}}"{{comma}}{{/each}}],
+  {{/if}}
   "Properties": {
     "ClientName": "{{this.Name}}",
     {{#if this.AllowedOAuthFlows}}"AllowedOAuthFlows":[

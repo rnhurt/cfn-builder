@@ -1,0 +1,19 @@
+{{!--
+  The AWS::ApiGatewayV2::ApiMapping resource contains an API mapping.
+
+  https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-apigatewayv2-apimapping.html
+ --}}
+
+"apiv2gwmap{{sanitize this.Name ''}}": {
+  "Type": "AWS::ApiGatewayV2::ApiMapping",
+  "Properties": {
+    "ApiId": {{#ifObject this.ApiId}}
+      { {{{inject this.ApiId}}} }
+    {{else}}
+      "{{this.ApiId}}"
+    {{/ifObject}},
+    {{#if this.ApiMappingKey}}"ApiMappingKey": "{{this.ApiMappingKey}}",{{/if}}
+    "DomainName": "{{this.DomainName}}",
+    "Stage": "{{this.Stage}}"
+  }
+}
